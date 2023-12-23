@@ -1,0 +1,2 @@
+# myFirstGO
+ learning go
