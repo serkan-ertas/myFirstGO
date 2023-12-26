@@ -1,3 +1,3 @@
-module whatIsThis/investment_calc
+module whatIsThis/main
 
 go 1.21.5
