@@ -1,36 +1,16 @@
+//lint:file-ignore U1000 dont wanna see unused val/func
 package main
 
 import (
-	"errors"
 	"fmt"
-	"os"
-	"strconv"
+
+	"whatIsThis.com/bank/fileops"
 )
 
 const accountBalanceFile = "balance.txt"
 
-func writeBalanceToFile(balance float64) {
-	balanceText := fmt.Sprint(balance)
-	os.WriteFile(accountBalanceFile, []byte(balanceText), 0644)
-}
-
-func getBalanceFromFile() (float64, error) {
-	data, err := os.ReadFile(accountBalanceFile)
-
-	if err != nil {
-		return 0, errors.New("failed to read the file")
-	}
-
-	balanceText := string(data)
-	balance, err := strconv.ParseFloat(balanceText, 64)
-	if err != nil {
-		return 0, errors.New("failed to parse the float")
-	}
-	return balance, nil
-}
-
 func dummyBank() {
-	accountBalance, err := getBalanceFromFile()
+	accountBalance, err := fileops.GetFloatFromFile(accountBalanceFile)
 
 	if err != nil {
 		fmt.Println("ERROR")
@@ -42,12 +22,7 @@ func dummyBank() {
 	fmt.Println("Welcome to GO Bank!")
 
 	for {
-
-		fmt.Println("What do you want to do?")
-		fmt.Println("1. Check balance")
-		fmt.Println("2. Deposit money")
-		fmt.Println("3. Withdraw money")
-		fmt.Println("4. Exit")
+		presentOptions()
 
 		var choice int
 		fmt.Print("Your choice: ")
@@ -69,7 +44,7 @@ func dummyBank() {
 			}
 
 			accountBalance += depositAmount
-			writeBalanceToFile(accountBalance)
+			fileops.WriteFloatToFile(accountBalanceFile, accountBalance)
 			fmt.Println("Balance updated! New amount:", accountBalance)
 			fmt.Print("\n")
 		case 3:
@@ -88,7 +63,7 @@ func dummyBank() {
 			}
 
 			accountBalance -= withdrawAmount
-			writeBalanceToFile(accountBalance)
+			fileops.WriteFloatToFile(accountBalanceFile, accountBalance)
 			fmt.Println("Balance updated! New amount:", accountBalance)
 			fmt.Print("\n")
 		default:

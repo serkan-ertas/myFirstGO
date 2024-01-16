@@ -1,3 +1,4 @@
+//lint:file-ignore U1000 dont wanna see unused val/func
 package main
 
 import (
