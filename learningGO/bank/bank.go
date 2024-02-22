@@ -1,16 +1,15 @@
-//lint:file-ignore U1000 dont wanna see unused val/func
-package main
+package bank
 
 import (
 	"fmt"
 
-	"whatIsThis.com/bank/fileops"
+	"whatIsThis.com/fileops"
 )
 
 const accountBalanceFile = "balance.txt"
 
-func dummyBank() {
-	accountBalance, err := fileops.GetFloatFromFile(accountBalanceFile)
+func DummyBank() {
+	accountBalance, err := fileops.GetFloatFromFile("bank/" + accountBalanceFile)
 
 	if err != nil {
 		fmt.Println("ERROR")
@@ -27,6 +26,7 @@ func dummyBank() {
 		var choice int
 		fmt.Print("Your choice: ")
 		fmt.Scan(&choice)
+		fmt.Println("\n")
 
 		switch choice {
 		case 1:
@@ -44,7 +44,7 @@ func dummyBank() {
 			}
 
 			accountBalance += depositAmount
-			fileops.WriteFloatToFile(accountBalanceFile, accountBalance)
+			fileops.WriteFloatToFile("bank/"+accountBalanceFile, accountBalance)
 			fmt.Println("Balance updated! New amount:", accountBalance)
 			fmt.Print("\n")
 		case 3:
@@ -63,7 +63,7 @@ func dummyBank() {
 			}
 
 			accountBalance -= withdrawAmount
-			fileops.WriteFloatToFile(accountBalanceFile, accountBalance)
+			fileops.WriteFloatToFile("bank/"+accountBalanceFile, accountBalance)
 			fmt.Println("Balance updated! New amount:", accountBalance)
 			fmt.Print("\n")
 		default:

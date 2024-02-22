@@ -1,12 +1,11 @@
-//lint:file-ignore U1000 dont wanna see unused val/func
-package main
+package investmentCalculator
 
 import (
 	"fmt"
 	"math"
 )
 
-func calculateInvestment() {
+func CalculateInvestment() {
 	const inflationRate = 2.5
 	var investmentAmount, years, expectedReturnRate float64
 
