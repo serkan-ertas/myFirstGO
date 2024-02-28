@@ -2,6 +2,7 @@ package bank
 
 import "fmt"
 
+// display options
 func presentOptions() {
 	fmt.Println("What do you want to do?")
 	fmt.Println("1. Check balance")

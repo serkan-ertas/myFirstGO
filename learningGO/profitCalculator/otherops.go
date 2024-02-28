@@ -5,6 +5,7 @@ import (
 	"fmt"
 )
 
+// get value
 func inputValue(printText string) (float64, error) {
 	fmt.Print(printText)
 	var scanVal float64
@@ -19,6 +20,7 @@ func inputValue(printText string) (float64, error) {
 	}
 }
 
+// calculate value
 func calcValue(revenue float64, expenses float64, taxRate float64) (ebt float64, profit float64, ratio float64) {
 	ebt = revenue - expenses //earnings before tax
 	profit = ebt * (1 - taxRate/100)
@@ -26,6 +28,7 @@ func calcValue(revenue float64, expenses float64, taxRate float64) (ebt float64,
 	return ebt, profit, ratio
 }
 
+// print value
 func printValue(ebt float64, profit float64, ratio float64) {
 	fmt.Printf("Earning Before Tax: %.1f\n", ebt)
 	fmt.Printf("Profit: %.1f\n", profit)

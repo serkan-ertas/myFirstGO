@@ -5,6 +5,7 @@ import (
 	"math"
 )
 
+// used this function to call in main
 func CalculateInvestment() {
 	const inflationRate = 2.5
 	var investmentAmount, years, expectedReturnRate float64
